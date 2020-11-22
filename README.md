@@ -7,6 +7,7 @@ Django==2.2.17
 django-otp
 django-simple-captcha
 django-multi-captcha-admin
+qrcode
 ```
 
 ### Commands for development (Not for Deployment)
@@ -23,6 +24,8 @@ $ python3 manage.py migrate
 
 $ python3 manage.py createsuperuser
 
+$ python3 ./manage.py addstatictoken <username>
+
 $ python3 manage.py runserver
 ```
 
@@ -31,6 +34,9 @@ $ python3 manage.py runserver
 
 ## Changelog
 
+- add otp static token enabled
+
+- enabled simple captcha admin login (overriden by OTP!)
 
 ## License
 
