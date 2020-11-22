@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django_otp.admin import OTPAdminSite
-admin.site.__class__ = OTPAdminSite
+admin.site.__class__ = OTPAdminSite # Enable if you have OTP Device setup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
