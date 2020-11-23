@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django_otp',
     'django_otp.plugins.otp_totp',
     'django_otp.plugins.otp_static',
+	'captcha',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,7 @@ MULTI_CAPTCHA_ADMIN = {
 }
 
 OTP_TOTP_ISSUER =  'Django OTP'
+
+LOGIN_REDIRECT_URL = '/login'
+LOGOUT_REDIRECT_URL = '/login'
+LOGIN_URL = '/login'

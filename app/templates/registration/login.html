@@ -1,0 +1,35 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+
+<!-- Header -->
+<div id="header">
+  <div id="branding">
+    <h1 id="site-name">User Login</h1>
+  </div>
+</div>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    {{ form.as_p }}
+    {{form.errors.otp_token}}
+  </div>
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="Log in" />
+  </div>
+
+</form>
+{% else %}
+
+<head>
+  <meta http-equiv='refresh' content='0; URL=/'>
+</head>
+<h2>Redirecting... Click <a href="/">here</a>, if you are not redirected..</h2>
+{% endif %}
+
+{% endblock %}

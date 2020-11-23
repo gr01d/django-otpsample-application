@@ -16,9 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django_otp.admin import OTPAdminSite
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView
+from django_otp.forms import OTPAuthenticationForm
+from app import views
+from django_otp.views import LoginView
+from app.views import MyLoginView
+from app.forms import LoginForm
+
 admin.site.__class__ = OTPAdminSite # Enable if you have OTP Device setup
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
+    #path('login/',views.login, name='login'),
+    #path('login/', LoginView.as_view(authentication_form=OTPAuthenticationForm), name='login'),
+    # path('login/', auth_views.LoginView.as_view(), name='login'), DEFAULT
+    path('login/', MyLoginView.as_view(authentication_form=LoginForm), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

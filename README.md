@@ -29,8 +29,21 @@ $ python3 ./manage.py addstatictoken <username>
 $ python3 manage.py runserver
 ```
 
+## How
+
+1. After creating the super user, execute addstatictoken for the user.
+
+2. Navigate to /admin login with that one time use token.
+
+3. Go to the the admin dashboard > Otp_Totp > TOTP devices > Add. Fields are self explanatory, generate your OTP codes using your mobile device by scanning the QR Code.
+
 ## TO DO
 
+- fix captcha implementation on admin or
+
+- disable admin login
+
+- Not logging on on some user
 
 ## Changelog
 
