@@ -25,6 +25,8 @@ from app.views import MyLoginView
 from app.forms import LoginForm
 
 admin.site.__class__ = OTPAdminSite # Enable if you have OTP Device setup
+admin.site.site_header = 'Dummy Administration'
+admin.site.site_title = 'Dummy Administration'
 
 urlpatterns = [
     path('', views.home, name='home'),
