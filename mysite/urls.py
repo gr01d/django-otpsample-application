@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django_otp.admin import OTPAdminSite
+from app.admin import CustomOTPAdminSite
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import LoginView
 from django_otp.forms import OTPAuthenticationForm
@@ -24,12 +24,13 @@ from django_otp.views import LoginView
 from app.views import MyLoginView
 from app.forms import LoginForm
 
-admin.site.__class__ = OTPAdminSite # Enable if you have OTP Device setup
+admin.site.__class__ = CustomOTPAdminSite # Enable if you have OTP Device setup
 admin.site.site_header = 'Dummy Administration'
 admin.site.site_title = 'Dummy Administration'
 
 urlpatterns = [
     path('', views.home, name='home'),
+
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
     #path('login/',views.login, name='login'),

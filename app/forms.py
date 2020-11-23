@@ -34,4 +34,4 @@ class LoginForm(OTPAuthenticationFormMixin, AuthenticationForm):
             return self.cleaned_data
 
 
-# AdminSite.login_form = LoginForm
+AdminSite.login_form = LoginForm

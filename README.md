@@ -31,25 +31,29 @@ $ python3 manage.py runserver
 
 ## How
 
+### For superuser level accounts
+
+Note: Always login on /admin only! not /login
+
 1. After creating the super user, execute addstatictoken for the user.
 
 2. Navigate to /admin login with that one time use token.
 
 3. Go to the the admin dashboard > Otp_Totp > TOTP devices > Add. Fields are self explanatory, generate your OTP codes using your mobile device by scanning the QR Code.
 
+### For user level accounts (non staff/admin)
+
+1. Login with the /login and not /admin
+
 ## TO DO
 
-- fix captcha implementation on admin or
-
-- disable admin login
-
-- Not logging on on some user
+- Clean code
 
 ## Changelog
 
-- add otp static token enabled
+- added custom admin login page
 
-- enabled simple captcha admin login (overriden by OTP!)
+- added otp static token enabled
 
 ## License
 
