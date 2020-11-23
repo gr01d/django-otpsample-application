@@ -1,20 +1,25 @@
+"""
+django-otpsample-application
+Copyright (C) 2020 gr01d
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 from django.contrib.auth import update_session_auth_hash, authenticate, login as customlogin
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from django_otp.forms import OTPTokenForm
 from django_otp.views import LoginView
-from django_otp import match_token
-
-
-from functools import partial
-
-from django.contrib.auth import BACKEND_SESSION_KEY
-from django.contrib.auth import views as auth_views
-from django.utils.functional import cached_property
-
-from django_otp.forms import OTPAuthenticationForm, OTPTokenForm
 
 # NASTY HACK (https://stackoverflow.com/questions/52026453/django-custom-login-form-is-valid-but-no-error/)
 # WIP

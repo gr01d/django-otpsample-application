@@ -1,12 +1,11 @@
 ## [django-otpsample-application](https://github.com/gr01d/django-otpsample-application)
-An attempt to harden django application.
+An attempt to harden django application by combining django-otp and django-simple-captcha.
 
 ### Requirements:
 ```
 Django==2.2.17
 django-otp
 django-simple-captcha
-django-multi-captcha-admin
 qrcode
 ```
 
@@ -51,6 +50,8 @@ Note: Always login on /admin only! not /login
 
 ## Changelog
 
+- removed django-multi-captcha-admin
+
 - added custom admin login page
 
 - added otp static token enabled
@@ -67,4 +68,6 @@ GNU AGPL v3
 
 [django-simple-captcha](https://github.com/mbi/django-simple-captcha)
 
-[django-multi-captcha-admin](https://github.com/a-roomana/django-multi-captcha-admin)
+https://stackoverflow.com/questions/52026453/django-custom-login-form-is-valid-but-no-error/
+
+https://www.reddit.com/r/djangolearning/comments/hmnhhz/django_2fa_otp_and_recaptcha_v3_on_the_admin/

@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '*ldz*8v98y(de42zk6qdl7b-kp_-fu(jh^$$56af(-ibfrf=pv'
+SECRET_KEY = 'D O N T U S E T H I S'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-	'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,11 +127,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MULTI_CAPTCHA_ADMIN = {
-    'engine': 'simple-captcha',
-}
 
-OTP_TOTP_ISSUER =  'Django OTP'
+OTP_TOTP_ISSUER =  'Dummy OTP Issuer'
 
 LOGIN_REDIRECT_URL = '/login'
 LOGOUT_REDIRECT_URL = '/login'

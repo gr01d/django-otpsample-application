@@ -17,14 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from app.admin import CustomOTPAdminSite
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.views import LoginView
+
 from django_otp.forms import OTPAuthenticationForm
 from app import views
-from django_otp.views import LoginView
+
 from app.views import MyLoginView
 from app.forms import LoginForm
 
-admin.site.__class__ = CustomOTPAdminSite # Enable if you have OTP Device setup
+admin.site.__class__ = CustomOTPAdminSite # Custom Admin with OTP and simple-captcha
 admin.site.site_header = 'Dummy Administration'
 admin.site.site_title = 'Dummy Administration'
 
@@ -33,9 +33,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
-    #path('login/',views.login, name='login'),
-    #path('login/', LoginView.as_view(authentication_form=OTPAuthenticationForm), name='login'),
-    # path('login/', auth_views.LoginView.as_view(), name='login'), DEFAULT
+
     path('login/', MyLoginView.as_view(authentication_form=LoginForm), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
