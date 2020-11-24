@@ -48,14 +48,6 @@ Note: Always login on /admin only! not /login
 
 - Clean code
 
-## Changelog
-
-- removed django-multi-captcha-admin
-
-- added custom admin login page
-
-- added otp static token enabled
-
 ## License
 
 GNU AGPL v3
@@ -71,3 +63,5 @@ GNU AGPL v3
 https://stackoverflow.com/questions/52026453/django-custom-login-form-is-valid-but-no-error/
 
 https://www.reddit.com/r/djangolearning/comments/hmnhhz/django_2fa_otp_and_recaptcha_v3_on_the_admin/
+
+[10-tips-making-django-admin-more-secure](https://opensource.com/article/18/1/10-tips-making-django-admin-more-secure)

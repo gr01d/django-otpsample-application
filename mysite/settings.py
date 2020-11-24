@@ -68,7 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-				'app.context_processors.from_settings',
             ],
         },
     },
@@ -133,5 +132,3 @@ OTP_TOTP_ISSUER =  'Dummy OTP Issuer'
 LOGIN_REDIRECT_URL = '/login'
 LOGOUT_REDIRECT_URL = '/login'
 LOGIN_URL = '/login'
-ENVIRONMENT_NAME = 'Development'
-ENVIRONMENT_COLOR = '#C0C0C0'
