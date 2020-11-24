@@ -3,3 +3,4 @@ django-otp
 django-simple-captcha
 qrcode
 django-admin-env-notice
+django-admin-honeypot

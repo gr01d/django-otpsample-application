@@ -1,5 +1,9 @@
 ## [django-otpsample-application](https://github.com/gr01d/django-otpsample-application)
-An attempt to harden django application by combining django-otp and django-simple-captcha.
+An attempt to harden django application by using the following:
+* django-otp
+* django-simple-captcha
+* django-admin-env-notice
+* django-admin-honeypot
 
 ### Requirements:
 ```
@@ -8,6 +12,7 @@ django-otp
 django-simple-captcha
 qrcode
 django-admin-env-notice
+django-admin-honeypot
 ```
 
 ### Commands for development (Not for Deployment)
@@ -33,17 +38,17 @@ $ python3 manage.py runserver
 
 ### For superuser level accounts
 
-Note: Always login on /admin only! not /login
+Note: Always login on <your-secret-admin-url> only (Line 36 mysite/urls.py)! not /login or /admin
 
 1. After creating the super user, execute addstatictoken for the user.
 
-2. Navigate to /admin login with that one time use token.
+2. Navigate to <your-secret-admin-url>  login with that one time use token.
 
-3. Go to the the admin dashboard > Otp_Totp > TOTP devices > Add. Fields are self explanatory, generate your OTP codes using your mobile device by scanning the QR Code.
+3. Go to the the Admin Dashboard > Otp_Totp > TOTP devices > Add. Fields are self explanatory, generate your OTP codes using your mobile device by scanning the QR Code.
 
 ### For user level accounts (non staff/admin)
 
-1. Login with the /login and not /admin
+1. Login with the /login and not <your-secret-admin-url>
 
 ## TO DO
 
@@ -53,7 +58,6 @@ Note: Always login on /admin only! not /login
 
 - add django-user-sessions
 
-- add django-admin-honeypot
 
 ## License
 

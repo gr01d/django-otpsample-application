@@ -23,6 +23,7 @@ from app import views
 
 from app.views import MyLoginView
 from app.forms import LoginForm
+from mysite import settings
 
 admin.site.__class__ = CustomOTPAdminSite # Custom Admin with OTP and simple-captcha
 admin.site.site_header = 'Dummy Administration'
@@ -30,8 +31,9 @@ admin.site.site_title = 'Dummy Administration'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
 
-    path('admin/', admin.site.urls),
+    path('secret/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
 
     path('login/', MyLoginView.as_view(authentication_form=LoginForm), name='login'),
