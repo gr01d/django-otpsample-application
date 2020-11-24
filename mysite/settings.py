@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'user_sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_otp',
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'user_sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -144,3 +144,10 @@ if DEBUG:
 else:
     ENVIRONMENT_NAME = "Production server"
     ENVIRONMENT_COLOR = "#FF2222"
+    
+#  django-admin-honeypot
+ADMIN_HONEYPOT_EMAIL_ADMINS = False
+
+# django-user-sessions
+SESSION_ENGINE = 'user_sessions.backends.db'
+SILENCED_SYSTEM_CHECKS = ['admin.E410']

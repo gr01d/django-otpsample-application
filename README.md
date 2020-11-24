@@ -4,6 +4,7 @@ An attempt to harden django application by using the following:
 * django-simple-captcha
 * django-admin-env-notice
 * django-admin-honeypot
+* django-user-sessions
 
 ### Requirements:
 ```
@@ -13,6 +14,7 @@ django-simple-captcha
 qrcode
 django-admin-env-notice
 django-admin-honeypot
+django-user-sessions
 ```
 
 ### Commands for development (Not for Deployment)
@@ -56,8 +58,7 @@ Note: Always login on <your-secret-admin-url> only (Line 36 mysite/urls.py)! not
 
 - Code review
 
-- add django-user-sessions
-
+- Add django-xforwardedfor-middleware?
 
 ## License
 
@@ -76,3 +77,9 @@ https://stackoverflow.com/questions/52026453/django-custom-login-form-is-valid-b
 https://www.reddit.com/r/djangolearning/comments/hmnhhz/django_2fa_otp_and_recaptcha_v3_on_the_admin/
 
 [10-tips-making-django-admin-more-secure](https://opensource.com/article/18/1/10-tips-making-django-admin-more-secure)
+
+[django-admin-env-notice](https://github.com/dizballanze/django-admin-env-notice)
+
+[django-admin-honeypot](https://github.com/dmpayton/django-admin-honeypot)
+
+[django-user-sessions](https://github.com/jazzband/django-user-sessions)

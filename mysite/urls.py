@@ -30,9 +30,18 @@ admin.site.site_header = 'Dummy Administration'
 admin.site.site_title = 'Dummy Administration'
 
 urlpatterns = [
+    # Disable this hardcoded django-user-sessions url
+    path('account/sessions/', views.blank, name='blank'),
+
+    # django-user-sessions
+    path('', include('user_sessions.urls', 'user_sessions')),
+    # FIXME:?
     path('', views.home, name='home'),
+
+    # django-admin-honeypot
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
 
+    # Real admin
     path('secret/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
 

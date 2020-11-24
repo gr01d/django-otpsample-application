@@ -50,3 +50,8 @@ class MyLoginView(LoginView):
 @login_required(redirect_field_name='/login')
 def home(request):
     return render(request, 'registration/home.html')
+
+# Fake page
+@login_required(redirect_field_name='/login')
+def blank(request):
+    return render(request, 'registration/404.html')
