@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_admin_env_notice',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_admin_env_notice.context_processors.from_settings',
             ],
         },
     },
@@ -132,3 +134,12 @@ OTP_TOTP_ISSUER =  'Dummy OTP Issuer'
 LOGIN_REDIRECT_URL = '/login'
 LOGOUT_REDIRECT_URL = '/login'
 LOGIN_URL = '/login'
+
+# Check if we are on DEBUG
+if DEBUG:
+    # https://github.com/dizballanze/django-admin-env-notice
+    ENVIRONMENT_NAME = "Development server"
+    ENVIRONMENT_COLOR = "#C0C0C0"
+else:
+    ENVIRONMENT_NAME = "Production server"
+    ENVIRONMENT_COLOR = "#FF2222"

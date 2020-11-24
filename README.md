@@ -7,6 +7,7 @@ Django==2.2.17
 django-otp
 django-simple-captcha
 qrcode
+django-admin-env-notice
 ```
 
 ### Commands for development (Not for Deployment)
@@ -47,6 +48,12 @@ Note: Always login on /admin only! not /login
 ## TO DO
 
 - Clean code
+
+- Code review
+
+- add django-user-sessions
+
+- add django-admin-honeypot
 
 ## License
 
