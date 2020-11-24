@@ -60,6 +60,8 @@ Note: Always login on <your-secret-admin-url> only (Line 36 mysite/urls.py)! not
 
 - Add django-xforwardedfor-middleware?
 
+- Customize fake admin to match django-otp + simple-captcha
+
 ## License
 
 GNU AGPL v3

@@ -1,5 +1,7 @@
 ## Changelog
 
+- added django-user-sessions
+
 - added django-admin-honeypot
 
 - added django-admin-env-notice
