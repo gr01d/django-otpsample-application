@@ -1,0 +1,99 @@
+{% extends 'app/base.html' %}
+{% load user_sessions i18n %}
+{% block content %}
+{% if user.is_authenticated %}
+<h2>User Profile</h2>
+<table class="table table-striped table-bordered table-sm wrap" width="100%">
+    <thead class="thead-dark">
+    <tr>
+       <th>Item</th>
+       <th>Value</th
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+       <td>User ID:</td>
+        <td>{{usermodel.id}}</td>
+    </tr>
+
+    <tr>
+       <td>User Name:</td>
+        <td>{{usermodel.username}}</td>
+    </tr>
+
+    <tr>
+       <td>Password:</td>
+        <td><a href="{% url 'change_password' %}" >Change password</a></td>
+    </tr>
+
+    <tr>
+       <td>Full Name:</td>
+        <td>{{ usermodel.first_name }} {{ usermodel.last_name }}</td>
+    </tr>
+    <tr>
+       <td>Email:</td>
+        <td>{{ usermodel.email }}</td>
+    </tr>
+
+    <tr>
+       <td>Joined Date:</td>
+        <td>{{ usermodel.date_joined }}</td>
+    </tr>
+    <tr>
+       <td>Last Login:</td>
+        <td>{{ usermodel.last_login }}</td>
+    </tr>
+
+    <tr>
+       <td>User Permissions:</td>
+        <td>{{ usermodel.get_all_permissions }}</td>
+    </tr>
+
+
+    <tr>
+       <td>Active Sessions:</td>
+        <td>
+
+          {% trans "<em>unknown on unknown</em>" as unknown_on_unknown %}
+          {% trans "<em>unknown</em>" as unknown %}
+
+          <table class="table table-striped table-bordered table-sm wrap" width="100%">
+            <thead class="thead-dark">
+              <tr>
+                <th>{% trans "Location" %}</th>
+                <th>{% trans "Device" %}</th>
+                <th>{% trans "Last Activity" %}</th>
+              </tr>
+            </thead>
+            {% for object in object_list %}
+              <tr {% if object.session_key == session_key %}class="active"{% endif %}>
+                <td>{{ object.ip|location|default_if_none:unknown|safe }} <small>({{ object.ip }})</small></td>
+                <td>{{ object.user_agent|device|default_if_none:unknown_on_unknown|safe }}</td>
+                <td>
+                  {% if object.session_key == session_key %}
+                    {% blocktrans with time=object.last_activity|timesince %}{{ time }} ago (this session){% endblocktrans %}
+                  {% else %}
+                    {% blocktrans with time=object.last_activity|timesince %}{{ time }} ago{% endblocktrans %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+
+          {% if object_list.count > 1 %}
+            <form method="post" action="{% url 'session_delete_other' %}">
+              {% csrf_token %}
+              <p>{% blocktrans %}You can also end all other sessions but the current.
+                This will log you out on all other devices.{% endblocktrans %}</p>
+              <button type="submit" class="btn btn-default btn-warning">{% trans "End All Other Sessions" %}</button>
+            </form>
+          {% endif %}
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
+
+{% load static %}

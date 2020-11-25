@@ -21,6 +21,15 @@ from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from django_otp.views import LoginView
 
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
+
+from django.views.generic import DeleteView, ListView, View
+from django.views.generic.edit import DeletionMixin
+from user_sessions.views import LoginRequiredMixin, SessionMixin
+from django.urls import reverse_lazy
+
+
 # NASTY HACK (https://stackoverflow.com/questions/52026453/django-custom-login-form-is-valid-but-no-error/)
 # WIP
 # See: https://www.reddit.com/r/djangolearning/comments/hmnhhz/django_2fa_otp_and_recaptcha_v3_on_the_admin/
@@ -55,3 +64,45 @@ def home(request):
 @login_required(redirect_field_name='/login')
 def blank(request):
     return render(request, 'registration/404.html')
+
+# https://simpleisbetterthancomplex.com/tips/2016/08/04/django-tip-9-password-change-form.html
+@login_required(redirect_field_name='/login')
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'app/change_password.html', {
+        'form': form
+    })
+
+# User Profile View
+@login_required(redirect_field_name='/login')
+def profile(request):
+    usermodel = User.objects.get( username=request.user)
+    # Get All Current User Sessions
+    object_list = request.user.session_set.all()
+    return render(request, 'app/profile.html', {'usermodel': usermodel, 'object_list': object_list})
+
+# django-user-sessions views.py
+class CustomSessionDeleteOtherView(LoginRequiredMixin, SessionMixin, DeletionMixin, View):
+    """
+    View for deleting all user's sessions but the current.
+
+    This view allows a user to delete all other active session. For example
+    log out all sessions from a computer at the local library or a friend's
+    place.
+    """
+    def get_object(self):
+        return super(CustomSessionDeleteOtherView, self).get_queryset().\
+            exclude(session_key=self.request.session.session_key)
+
+    def get_success_url(self):
+        return str(reverse_lazy('profile'))

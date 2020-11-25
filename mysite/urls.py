@@ -36,7 +36,7 @@ urlpatterns = [
     # django-user-sessions
     path('', include('user_sessions.urls', 'user_sessions')),
     # FIXME:?
-    path('', views.home, name='home'),
+    path('', include('app.urls')),
 
     # django-admin-honeypot
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),

@@ -1,5 +1,7 @@
 ## Changelog
 
+- added User Profile, User Sessions View and Change Password
+
 - added django-user-sessions
 
 - added django-admin-honeypot
